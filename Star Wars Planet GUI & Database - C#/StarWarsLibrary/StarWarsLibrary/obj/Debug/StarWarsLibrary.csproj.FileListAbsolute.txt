@@ -1,0 +1,5 @@
+C:\Users\Niki\documents\visual studio 2015\Projects\StarWarsLibrary\StarWarsLibrary\bin\Debug\StarWarsLibrary.dll
+C:\Users\Niki\documents\visual studio 2015\Projects\StarWarsLibrary\StarWarsLibrary\bin\Debug\StarWarsLibrary.pdb
+C:\Users\Niki\documents\visual studio 2015\Projects\StarWarsLibrary\StarWarsLibrary\obj\Debug\StarWarsLibrary.dll
+C:\Users\Niki\documents\visual studio 2015\Projects\StarWarsLibrary\StarWarsLibrary\obj\Debug\StarWarsLibrary.pdb
+C:\Users\Niki\documents\visual studio 2015\Projects\StarWarsLibrary\StarWarsLibrary\obj\Debug\StarWarsLibrary.csprojResolveAssemblyReference.cache

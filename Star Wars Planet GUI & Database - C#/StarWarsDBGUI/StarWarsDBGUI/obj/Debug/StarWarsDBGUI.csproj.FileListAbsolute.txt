@@ -1,0 +1,16 @@
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\bin\Debug\StarWarsDBGUI.exe.config
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\bin\Debug\StarWarsDBGUI.exe
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\bin\Debug\StarWarsDBGUI.pdb
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI.csprojResolveAssemblyReference.cache
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\MainWindow.g.cs
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\App.g.cs
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI_MarkupCompile.cache
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI_MarkupCompile.lref
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\MainWindow.baml
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI.g.resources
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI.Properties.Resources.resources
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI.csproj.GenerateResource.Cache
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI.exe
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\obj\Debug\StarWarsDBGUI.pdb
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\bin\Debug\StarWarsLibrary.dll
+c:\users\niki\documents\visual studio 2015\Projects\StarWarsDBGUI\StarWarsDBGUI\bin\Debug\StarWarsLibrary.pdb
