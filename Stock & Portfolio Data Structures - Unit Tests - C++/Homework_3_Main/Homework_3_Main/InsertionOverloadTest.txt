@@ -1,0 +1,16 @@
+Staples
+10
+30
+
+Walmart
+200
+300
+
+Amazon
+800
+100
+
+Ebay
+405
+600
+
