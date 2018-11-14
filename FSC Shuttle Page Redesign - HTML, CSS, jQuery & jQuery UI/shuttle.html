@@ -1,0 +1,1260 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- jQuery library CDN link -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- jQuery UI CSS theme CDN link. In Notepad++, to edit the link code to use a different theme, click at the end of the line for the CSS link below, use the left arrow key to enter the link, delete the current theme ("start"), and then type a different jQuery UI theme name. -->
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/humanity/jquery-ui.css" rel="stylesheet">
+
+<!-- jQuery UI library CDN link -->
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<title>Farmingdale State College Shuttle</title>
+
+<link rel="icon" href="shuttleTabIcon.ico">
+
+<style>
+/* Fixes the jQuery UI blue outline problem around the dialog close button in Google Chrome. */
+ .ui-dialog .ui-button:focus,
+ .ui-dialog .ui-button span:focus {
+    outline: none;
+}
+</style>
+
+<!-- Enter your custom CSS styles to override those from jQuery UI and Bootstrap. -->
+<style>
+body {
+  background: url("bodyBackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Times New Roman", Times, serif;
+}
+
+img {
+  margin: 5px;
+  border-radius: 20px;
+  border: double thick #0F4849;
+  box-shadow: 5px 5px 10px #3D3534;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+figure figcaption {
+  font-size: .8em;
+  font-style: italic;
+}
+
+h2, h3 {
+  clear: both;
+  color: #FBBB0B;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #0F4849;
+  text-shadow: 2px 2px black;
+}
+
+h4 {
+  width: 70%;
+  clear: both;
+  margin: 15px auto;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #E4A05C;
+}
+
+header, main, article, aside, nav ul, footer {
+  text-align: center;
+  border-radius: 20px;
+  background-color: white;
+  border: 2px solid #1E160B;
+  box-shadow: 5px 5px 10px #3D3534;
+}
+
+header {
+  width: 70%;
+  margin: auto;
+  padding: 10px;
+}
+
+main {
+  width: 54%;
+  float: left;
+  padding: 20px;
+  height: 800px;
+  margin-bottom: 10px;
+}
+
+article {
+  width: 54%;
+  float: left;
+  padding: 20px;
+  height: 1000px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
+aside {
+  width: 40%;
+  float: right;
+  padding: 20px;
+  height: 800px;
+}
+
+aside table {
+  margin: auto;
+  border: 2px solid black;
+  border-collapse: collapse;
+  box-shadow: 5px 5px 10px #3D3534;
+}
+
+aside table th {
+  padding: 5px;
+  border-bottom: 2px solid black;
+}
+
+aside table td {
+  padding: 5px;
+  border-bottom: 2px solid black;
+}
+
+footer {
+  width: 80%;
+  clear: both;
+  margin: auto;
+  padding: 10px;
+}
+
+footer p {
+  font-size: 1.5em;
+}
+
+nav ul {
+  width: 90%;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: #0F4849;
+}
+
+nav li {
+  display: inline-block;
+  padding: 0 100px 0 70px;
+}
+
+nav li a {
+  color: #FBBB0B;
+}
+
+nav li a:hover {
+  color: #5DBCD2;
+}
+
+nav li a:visited {
+  color: #DFDED9;
+}
+
+#FAQ {
+  height: 1000px;
+}
+
+#faqAccordion p {
+  padding: 20px;
+  font-size: .9em;
+  border-radius: 20px;
+  background-color: white;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#moreVenues {
+  display: none;
+  text-align: center;
+  border-radius: 20px;
+  background-color: white;
+}
+
+#moreVenues h3 {
+  width: 50%;
+  margin: 10px auto;
+}
+
+#shuttleScheduleTabs table {
+  margin: auto;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#shuttleScheduleTabs th {
+  width: 300px;
+  padding: 10px;
+  color: #FBBB0B;
+  border-radius: 5px;
+  border: 2px solid #FBBB0B;
+}
+
+#shuttleScheduleTabs td {
+  border: 1px solid white;
+}
+
+#shuttleScheduleTabs h3 {
+  width: 50%;
+  color: black;
+  margin: 20px auto;
+  text-shadow: none;
+  border-radius: 20px;
+  background-color: #E4A05C;
+  box-shadow: 5px 5px 10px #3D3534;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.ui-tooltip {
+  font-size: .95em;
+  box-shadow: none;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.leftText {
+  text-align: left;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.floatLeft {
+  float: left;
+  margin: 10px;
+}
+</style>
+
+<!-- Enter your custom scripts below. -->
+<script>
+$(function () {
+  $("#taxiTable th").css("background-color" , "#F1B241");
+  $("#taxiTable tr:odd").css("background-color" , "#D0B3A5");
+  $("#taxiTable tr:even").css("background-color" , "#E6D7B8");
+  
+  $("#moreVenues").dialog({
+    autoOpen: false,
+	resizable: false,
+	draggable: false,
+	modal: true,
+	width: "50%",
+	maxHeight: 700,
+	buttons: {
+	  "Exit" : function() { 
+	  $("#moreVenues").dialog("close");
+	  },
+	},
+  });
+  
+  $("#openDialog").click(function (){
+    $("#moreVenues").dialog("open");
+  });
+  
+  $("#shuttleScheduleTabs").tabs();
+  
+  $("#shuttleScheduleTabs th").css("background-color" , "#0F4849");
+  $("#shuttleScheduleTabs tr:odd").css("background-color" , "#fffaf7");
+  $("#shuttleScheduleTabs tr:even").css("background-color" , "#ffd9b3");
+  
+  $(".eveningShuttle td").css("font-weight", "bold");
+  $(".eveningShuttle:odd").css("background-color", "#d7e2e2");
+  $(".eveningShuttle:even").css("background-color", "#adc9c3");
+  
+  $("[title]").tooltip();
+  
+  $("#shuttleScheduleTabs").tooltip({
+	items: "tr",
+	track: true,
+	content: "Morning/Afternoon shuttles are available from <strong>Monday to Friday.</strong>",
+  });
+  
+  $(".eveningShuttle").tooltip({
+	items: "tr",
+	track: true,
+	content: "Evening shuttles are only available from <strong>Monday to Thursday.</strong>",
+  });
+  
+  $("#faqAccordion").accordion({
+    active: 10,
+    collapsible: true,
+  });
+  
+  $("#faqAccordion").tooltip({
+	track: true,
+  });
+});
+</script>
+</head>
+
+<body>
+
+<header>
+<figure>
+<img src="shuttleBanner.jpg" title="The Farmingdale shuttle banner image.">
+</figure>
+</header>
+
+<nav>
+<ul>
+  <li><a href="#shuttleInformation" title="Click here to go to the Farmingdale shuttle information section.">Shuttle Information</a></li>
+  <li><a href="#shuttleSchedule" title="Click here to go to the Farmingdale shuttle schedule.">Shuttle Schedule</a></li>
+  <li><a href="#FAQ" title="Click here to go to the Farmingdale shuttle Frequently Asked Questions (FAQ) section.">FAQ</a></li>
+  <li><a href="#createdBy" title="Click here to see who this page was created by.">Created By</a></li>
+</ul>
+</nav>
+
+<main id="shuttleInformation">
+<h2>The Farmingdale Shuttle</h2>
+
+<figure>
+<img src="shuttleBackView.jpg" title="A back view of the Farmingdale shuttle.">
+</figure>
+
+<figure>
+<img src="shuttleSideView.jpg" title="A side view of the Farmingdale shuttle.">
+</figure>
+
+<figure>
+<img src="shuttleFrontView.jpg" title="A front view of the Farmingdale shuttle.">
+</figure>
+
+<h4>Hello students, faculty, staff, and alumni of Farmingdale State College!</h4>
+
+<p>Farmingdale State College is now offering a courtesy shuttle that takes members of the FSC community to and from <strong>Laffin Hall</strong>, the <strong>Aviation Center</strong>, and the <strong>Farmingdale Long Island Railroad (LIRR)</strong>.
+<br> <br> The shuttle operates throughout the <strong>Spring (1/28/17 to 5/19/17)</strong> and <strong>Fall (8/28/17 to 12/19/17)</strong> semesters and is available from <strong>Monday to Friday during the day (7 AM - 5 PM)</strong> and <strong>Monday to Thursday during the evening (after 5 PM)</strong>.
+<br> <br>The shuttle requires the <strong>presentation of a Farmingdale State College ID to board</strong>.</p>
+
+<figure>
+<img src="shuttleluggage.jpg" class="floatLeft" title="A student with luggage about to board the Farmingdale shuttle.">
+</figure>
+
+<figure>
+<img src="wheelchairSymbol.png" title="A wheelchair accessible symbol.">
+</figure>
+
+<figure>
+<img src="foodSymbol.png" title="A food permitted symbol.">
+</figure>
+
+<figure>
+<img src="luggageSymbol.jpg" title="A luggage permitted symbol.">
+</figure>
+
+<p>The Farmingdale shuttle is also wheelchair accessible,
+<br> allows food and drink to be brought aboard,
+<br> and provides space for passengers who are travelling with luggage.
+<br> <br>The shuttle <strong>does not</strong> operate on Saturdays, Sundays, and days when Farmingdale State College's campus is closed or classes are cancelled.</p>
+
+<br> <h4>Do you have a question?</h4>
+
+<p>To ask a question or check on the status of the shuttle, please call <strong>631-420-2103</strong>.
+<br> <br> Additional information about the Farmingdale shuttle can be found in the <a href="#FAQ" title="Click here to go to the Frequently Asked Questions (FAQ) section.">FAQ</a>.</p>
+</main>
+
+<aside>
+<h3>If You Miss Your Shuttle...</h3>
+
+<figure>
+<img src="yellowCab.jpg" class="floatLeft" title="An image of a Yellow Cab taxi.">
+</figure>
+
+<p>If you miss your shuttle... <strong>don't panic!</strong>
+<br> <br> A taxi service can take you to and from the Farmingdale LIRR and the Farmingdale campus.</p>
+
+<table id="taxiTable" title="A table of taxi services you can call if you miss your shuttle.">
+  <tr>
+    <th>Taxi Service</th>
+    <th>Phone Number</th>
+    <th>Fare</th>
+  </tr>
+
+  <tr>
+    <td>Checkers Cab</td>
+    <td>516-777-1111</td>
+    <td>$8</td>
+  </tr>
+
+  <tr>
+    <td>Yellow Cab</td>
+    <td>516-249-6666</td>
+    <td>$8</td>
+  </tr>
+</table>
+
+<br> <br> <h3>Food Venues Around The Farmingdale LIRR</h3>
+
+<p>If you're feeling hungry before or after your travels, there are several venues around the Farmingdale LIRR you can visit to get a quick meal or beverage.
+<br> <br> The Farmingdale LIRR has a Starbucks that serves coffee and various snacks, as well as a T.A.O Asian Fusion restaurant across from it that serves Asian cuisine.</p>
+
+<figure>
+<img src="starbucks.jpg" title="The Farmingdale LIRR's Starbucks.">
+</figure>
+
+<figure>
+<img src="toaRestaurant.jpg" title="The T.O.A Asian Fusion restaurant across from the Farmingdale LIRR.">
+</figure>
+
+<p>Several other venues (such as a deli, a library cafe, and a gym) can be found on Main Street, which is about a 15 minute walk from the Farmingdale LIRR.</p>
+<button id="openDialog" title="Click this button to open a dialog that shows some venues on Main Street.">Click Here To View More Main Street Venues</button>
+
+<br> <figure>
+<img src="foodSymbol.jpg" title="A food symbol.">
+</figure>
+
+<figure>
+<img src="librarySymbol.png" title="A library symbol.">
+</figure>
+
+<figure>
+<img src="gymSymbol.png" title="A gym symbol.">
+</figure>
+
+<div id="moreVenues" title="Main Street Venues">
+<h3>Gutierrez Deli</h3>
+<figure>
+<img src="gutierrezDeli.jpg" title="The Gutierrez Deli on Main Street.">
+<figcaption>The Gutierrez Deli on Main Street.
+<br> If you're feeling hungry before or after your travels, stop by here to get a delicious sandwich!</figcaption>
+</figure>
+
+<h3>The Library Cafe</h3>
+<figure>
+<img src="libraryCafe.jpg" title="The Library Cafe on Main Street.">
+<figcaption>The Library Cafe on Main Street.
+<br> If you're in the mood for a burger and fries, the Library Cafe is the place to go!</figcaption>
+</figure>
+
+<h3>Synergy Gym</h3>
+<figure>
+<img src="synergyGym.jpg" title="The Synergy Gym on Main Street.">
+<figcaption>The Synergy Gym on Main Street.
+<br> After your pre/post travel feast, you can get some exercise here.</figcaption>
+</figure>
+</div>
+</aside>
+
+<article id = "shuttleSchedule">
+<h2>Shuttle Schedule</h2>
+
+<figure>
+<img src="laffinShuttle.jpg" title="The Farmingdale shuttle in front of Laffin Hall.">
+</figure>
+
+<figure>
+<img src="aviationCenter.jpg" title="Farmingdale State College's Aviation Center building.">
+</figure>
+
+<figure>
+<img src="trainShuttleArea.jpg" title="The Farmingdale shuttle's pick-up/drop-off area at the Farmingdale LIRR.">
+</figure>
+
+<p>The tabs below contain the Fall 2017 shuttle schedule to and from Laffin Hall, the Aviation Center, and the Farmingdale LIRR.</p>
+
+<h4>Please Note:</h4>
+
+<div class="leftText">
+<figure>
+<img src="asterisk.png" title="An asterisk symbol (*)."> = Drop-off/Pick-up is on the Westbound/North side of the Farmingdale LIRR station.
+</figure>
+
+<br> <figure>
+<img src="dayKey.png" title="The color palette of the Morning/Afternoon shuttle times."> = Morning/Afternoon Shuttle (which operates from <strong>Monday to Friday</strong>).
+</figure>
+
+<br> <figure>
+<img src="eveningKey.png" title="The color palette of the Evening shuttle times."> = Evening Shuttle (which operates from <strong>Monday to Thursday</strong>).
+</figure>
+</div>
+
+<div id="shuttleScheduleTabs">
+<ul>
+<li><a href="#laffinHall" title="The tab containing the shuttle's schedule to and from Laffin Hall.">Laffin Hall</a></li>
+<li><a href="#aviationCenter" title="The tab containing the shuttle's schedule to and from the Aviation Center.">Aviation Center</a></li>
+<li><a href="#farmingdaleLIRR" title="The tab containing the shuttle's schedule to and from the Farmingdale LIRR.">Farmingdale LIRR</a></li>
+</ul>
+<div id="laffinHall">
+
+<h3>TO LAFFIN HALL</h3>
+
+<table>
+  <tr>
+    <th colspan="2">Farmingdale LIRR To Laffin Hall</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Farmingdale LIRR</th>
+	<th>Arrival To Laffin Hall</th>
+  </tr>
+  
+  <tr>
+	<td>7:00 AM</td>
+	<td>7:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>7:25 AM</td>
+	<td>7:30 AM</td>
+  </tr>
+  
+  <tr>
+	<td>7:50 AM</td>
+	<td>7:55 AM</td>
+  </tr>
+  
+  <tr>
+	<td>8:25 AM</td>
+	<td>8:30 AM</td>
+  </tr>
+  
+  <tr>
+	<td>8:40 AM</td>
+	<td>8:45 AM</td>
+  </tr>
+  
+  <tr>
+	<td>9:10 AM</td>
+	<td>9:15 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:15 AM</td>
+	<td>10:20 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:45 AM</td>
+	<td>10:50 AM</td>
+  </tr>
+  
+  <tr>
+	<td>11:15 AM</td>
+	<td>11:20 AM</td>
+  </tr>
+  
+  <tr>
+	<td>1:15 PM</td>
+	<td>1:20 PM</td>
+  </tr>
+  
+  <tr>
+	<td>2:30 PM</td>
+	<td>2:35 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:15 PM</td>
+	<td>3:20 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:20 PM</td>
+	<td>4:25 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:50 PM</td>
+	<td>4:55 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:15 PM</td>
+	<td>5:20 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:00 PM*</td>
+	<td>6:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:25 PM*</td>
+	<td>6:30 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:50 PM</td>
+	<td>6:55 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>7:50 PM</td>
+	<td>7:55 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:10 PM</td>
+	<td>8:15 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:30 PM</td>
+	<td>8:35 PM</td>
+  </tr>
+  
+  <tr>
+    <th colspan="2">Aviation Center To Laffin Hall</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Aviation Center</th>
+	<th>Arrival To Laffin Hall</th> 
+  </tr>
+  
+  <tr>
+	<td>9:45 AM</td>
+	<td>9:55 AM</td>
+  </tr>
+  
+  <tr>
+	<td>2:05 PM</td>
+	<td>2:15 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:55 PM</td>
+	<td>4:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:35 PM</td>
+	<td>5:45 PM</td>
+  </tr>
+</table>
+
+<h3>FROM LAFFIN HALL</h3>
+
+<table>
+  <tr>
+    <th colspan="2">Laffin Hall To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Laffin Hall</th>
+	<th>Arrival To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<td>7:10 AM</td>
+	<td>7:15 AM</td>
+  </tr>
+  
+  <tr>
+	<td>7:40 AM</td>
+	<td>7:45 AM</td>
+  </tr>
+  
+  <tr>
+	<td>8:30 AM</td>
+	<td>8:35 AM</td>
+  </tr>
+  
+  <tr>
+	<td>9:00 AM</td>
+	<td>9:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>9:20 AM</td>
+	<td>9:25 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:00 AM</td>
+	<td>10:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:30 AM</td>
+	<td>10:35 AM</td>
+  </tr>
+  
+  <tr>
+	<td>11:00 AM</td>
+	<td>11:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>1:00 PM</td>
+	<td>1:05 PM</td>
+  </tr>
+  
+  <tr>
+	<td>1:35 PM</td>
+	<td>1:40 PM</td>
+  </tr>
+  
+  <tr>
+	<td>2:20 PM</td>
+	<td>2:25 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:00 PM</td>
+	<td>3:05 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:30 PM</td>
+	<td>3:35 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:10 PM</td>
+	<td>4:15 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:30 PM</td>
+	<td>4:35 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:00 PM</td>
+	<td>5:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:50 PM</td>
+	<td>5:55 PM*</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:10 PM</td>
+	<td>6:15 PM*</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:40 PM</td>
+	<td>6:45 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:00 PM</td>
+	<td>8:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:20 PM</td>
+	<td>8:25 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:55 PM</td>
+	<td>9:00 PM</td>
+  </tr>
+  
+  <tr>
+    <th colspan="2">Laffin Hall To Aviation Center</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Laffin Hall</th>
+	<th>Arrival To Aviation Center</th> 
+  </tr>
+  
+  <tr>
+	<td>8:00 AM</td>
+	<td>8:10 AM</td>
+  </tr>
+  
+  <tr>
+	<td>11:30 AM</td>
+	<td>11:40 AM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:25 PM</td>
+	<td>5:35 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>7:25 PM</td>
+	<td>7:35 PM</td>
+  </tr> 
+</table>
+</div>
+
+<div id="aviationCenter">
+
+<h3>TO AVIATION CENTER</h3>
+
+<table>
+  <tr>
+    <th colspan="2">Farmingdale LIRR To Aviation Center</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Farmingdale LIRR</th>
+	<th>Arrival To Aviation Center</th>
+  </tr>
+  
+  <tr>
+	<td>9:30 AM</td>
+	<td>9:45 AM</td>
+  </tr>
+  
+  <tr>
+	<td>1:45 PM</td>
+	<td>1:55 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:45 PM</td>
+	<td>3:55 PM</td>
+  </tr>
+  
+  <tr>
+    <th colspan="2">Laffin Hall To Aviation Center</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Laffin Hall</th>
+	<th>Arrival To Aviation Center</th>
+  </tr>
+  
+  <tr>
+	<td>8:00 AM</td>
+	<td>8:10 AM</td>
+  </tr>
+  
+  <tr>
+	<td>11:30 AM</td>
+	<td>11:40 AM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:25 PM</td>
+	<td>5:35 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>7:25 PM</td>
+	<td>7:35 PM</td>
+  </tr>
+</table>
+
+<h3>FROM AVIATION CENTER</h3>
+
+<table>
+  <tr>
+    <th colspan="2">Aviation Center To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Aviation Center</th>
+	<th>Arrival To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<td>8:15 AM</td>
+	<td>8:25 AM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>7:35 PM</td>
+	<td>7:45 PM</td>
+  </tr>
+ 
+  <tr>
+    <th colspan="2">Aviation Center To Laffin Hall</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Aviation Center</th>
+	<th>Arrival To Laffin Hall</th>
+  </tr>
+  
+  <tr>
+	<td>9:45 AM</td>
+	<td>9:55 AM</td>
+  </tr>
+  
+  <tr>
+	<td>2:05 PM</td>
+	<td>2:15 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:55 PM</td>
+	<td>4:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:35 PM</td>
+	<td>5:45 PM</td>
+  </tr>
+</table>
+</div>
+
+<div id="farmingdaleLIRR">
+
+<h3>TO FARMINGDALE LIRR</h3>
+
+<table>
+  <tr>
+    <th colspan="2">Laffin Hall To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Laffin Hall</th>
+	<th>Arrival To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<td>7:10 AM</td>
+	<td>7:15 AM</td>
+  </tr>
+  
+  <tr>
+	<td>7:40 AM</td>
+	<td>7:45 AM</td>
+  </tr>
+  
+  <tr>
+	<td>8:30 AM</td>
+	<td>8:35 AM</td>
+  </tr>
+  
+  <tr>
+	<td>9:00 AM</td>
+	<td>9:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>9:20 AM</td>
+	<td>9:25 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:00 AM</td>
+	<td>10:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:30 AM</td>
+	<td>10:35 AM</td>
+  </tr>
+  
+  <tr>
+	<td>11:00 AM</td>
+	<td>11:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>1:00 PM</td>
+	<td>1:05 PM</td>
+  </tr>
+  
+  <tr>
+	<td>1:35 PM</td>
+	<td>1:40 PM</td>
+  </tr>
+  
+  <tr>
+	<td>2:20 PM</td>
+	<td>2:25 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:00 PM</td>
+	<td>3:05 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:30 PM</td>
+	<td>3:35 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:10 PM</td>
+	<td>4:15 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:30 PM</td>
+	<td>4:35 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:00 PM</td>
+	<td>5:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:50 PM</td>
+	<td>5:55 PM*</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:10 PM</td>
+	<td>6:15 PM*</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:40 PM</td>
+	<td>6:45 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:00 PM</td>
+	<td>8:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:20 PM</td>
+	<td>8:25 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:55 PM</td>
+	<td>9:00 PM</td>
+  </tr>
+  
+  <tr>
+    <th colspan="2">Aviation Center To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Aviation Center</th>
+	<th>Arrival To Farmingdale LIRR</th>
+  </tr>
+  
+  <tr>
+	<td>8:15 AM</td>
+	<td>8:25 AM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>7:35 PM</td>
+	<td>7:45 PM</td>
+  </tr> 
+</table>
+
+<h3>FROM FARMINGDALE LIRR</h3>
+
+<table>
+  <tr>
+    <th colspan="2">Farmingdale LIRR To Laffin Hall</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Farmingdale LIRR</th>
+	<th>Arrival To Laffin Hall</th>
+  </tr>
+  
+  <tr>
+	<td>7:00 AM</td>
+	<td>7:05 AM</td>
+  </tr>
+  
+  <tr>
+	<td>7:25 AM</td>
+	<td>7:30 AM</td>
+  </tr>
+  
+  <tr>
+	<td>7:50 AM</td>
+	<td>7:55 AM</td>
+  </tr>
+  
+  <tr>
+	<td>8:25 AM</td>
+	<td>8:30 AM</td>
+  </tr>
+  
+  <tr>
+	<td>8:40 AM</td>
+	<td>8:45 AM</td>
+  </tr>
+  
+  <tr>
+	<td>9:10 AM</td>
+	<td>9:15 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:15 AM</td>
+	<td>10:20 AM</td>
+  </tr>
+  
+  <tr>
+	<td>10:45 AM</td>
+	<td>10:50 AM</td>
+  </tr>
+  
+  <tr>
+	<td>11:15 AM</td>
+	<td>11:20 AM</td>
+  </tr>
+  
+  <tr>
+	<td>1:15 PM</td>
+	<td>1:20 PM</td>
+  </tr>
+  
+  <tr>
+	<td>2:30 PM</td>
+	<td>2:35 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:15 PM</td>
+	<td>3:20 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:20 PM</td>
+	<td>4:25 PM</td>
+  </tr>
+  
+  <tr>
+	<td>4:50 PM</td>
+	<td>4:55 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>5:15 PM</td>
+	<td>5:20 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:00 PM*</td>
+	<td>6:05 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:25 PM*</td>
+	<td>6:30 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>6:50 PM</td>
+	<td>6:55 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>7:50 PM</td>
+	<td>7:55 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:10 PM</td>
+	<td>8:15 PM</td>
+  </tr>
+  
+  <tr class="eveningShuttle">
+	<td>8:30 PM</td>
+	<td>8:35 PM</td>
+  </tr>
+ 
+  <tr>
+    <th colspan="2">Farmingdale LIRR To Aviation Center</th>
+  </tr>
+  
+  <tr>
+	<th>Departure From Farmingdale LIRR</th>
+	<th>Arrival To Aviation Center</th>
+  </tr>
+  
+    <tr>
+	<td>9:30 AM</td>
+	<td>9:45 AM</td>
+  </tr>
+  
+  <tr>
+	<td>1:45 PM</td>
+	<td>1:55 PM</td>
+  </tr>
+  
+  <tr>
+	<td>3:45 PM</td>
+	<td>3:55 PM</td>
+  </tr>  
+</table>
+</div>
+</div>
+</article>
+
+<aside id="FAQ">
+<h2>Frequently Asked Questions (FAQ)</h2>
+
+<figure>
+<img src="faqBanner.png" title="The FAQ banner.">
+</figure>
+
+<p>Click on the box of each frequently asked question below to view its answer.</p>
+
+<h2>Frequently Asked Questions (FAQ)</h2>
+
+<div id="faqAccordion" title="Click to reveal the answer to the question or to close the accordion.">
+<h1><a href="#question1">Do I need a Farmingdale State College ID to board the shuttle?</a></h1>
+<div>
+<p>Yes. All passengers will be asked to present their Farmingdale State College ID before they can board the shuttle.</p>
+</div>
+
+<h1><a href="#question2">Do I have to pay to board the Farmingdale shuttle?</a></h1>
+<div>
+<p>No. If you are a Farmingdale State College student, alumni, staff, or faculty member then you will only need to present your FSC ID to board the shuttle.
+<br> The courtesy shuttle service is funded by the Student Transportation Fee.</p>
+</div>
+
+<h1><a href="#question3">What happens if the shuttle becomes full at a stop?</a></h1>
+<div>
+<p>The shuttle will transport the first set of passengers and then return to the stop to transport the remaining passengers to their destination.</p>
+</div>
+
+<h1><a href="#question4">Is the shuttle wheelchair accessible?</a></h1>
+<div>
+<p>Yes. The shuttle is wheelchair accessible.</p>
+</div>
+
+<h1><a href="#question5">Can I bring luggage onto the shuttle?</a></h1>
+<div>
+<p>Yes. The shuttle allows its passengers to bring luggage aboard.</p>
+</div>
+
+<h1><a href="#question6">Can I bring food and/or a beverage onto the shuttle?</a></h1>
+<div>
+<p>Yes. The shuttle allows food and beverages to brought aboard.</p>
+</div>
+
+<h1><a href="#question7">Is the shuttle available on days when the Farmingdale campus is closed or classes are cancelled?</a></h1>
+<div>
+<p>No. The shuttle is not available on days when the Farmingdale campus is closed or classes are cancelled.</p>
+</div>
+
+<h1><a href="#question8">How long does the shuttle wait at a stop?</a></h1>
+<div>
+<p>The shuttle waits for 5 minutes at every stop.</p>
+</div>
+
+<h1><a href="#question9">How can I check if my shuttle is running late?</a></h1>
+<div>
+<p>To check on the status of the shuttle, please call <strong>631-420-2103</strong>.</p>
+</div>
+
+<h1><a href="#question10">What can I do if I miss my shuttle?</a></h1>
+<div>
+<p>You can call a Yellow Cab <strong>(516-249-6666)</strong> or Checkers Cab <strong>(516-777-1111)</strong> taxi service to take you to your destination for $8 per person.</p>
+</div>
+
+<h1><a href="#question11">I have a question that wasn't answered here. What can I do?</a></h1>
+<div>
+<p>If you have any unanswered questions about the Farmingdale shuttle, please call <strong>631-420-2103</strong>.</p>
+</div>
+</div>
+</aside>
+
+<footer id="createdBy">
+<h2>Created By</h2>
+<p>Niki Jahanara</p>
+</footer>
+
+</body>
+</html>
