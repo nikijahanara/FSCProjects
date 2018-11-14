@@ -1,0 +1,25 @@
+﻿Build started 12/8/2017 9:40:35 AM.
+     1>Project "C:\Users\Niki\Documents\Visual Studio 2013\Projects\Stock_Portfolio_Library\Stock_Portfolio_Library\Stock_Portfolio_Library.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Portfolio.cpp Stock.cpp StockBST.cpp StockList.cpp StockQueue.cpp StockStack.cpp
+         StockStack.cpp
+         StockQueue.cpp
+         StockList.cpp
+         StockBST.cpp
+         Stock.cpp
+         Portfolio.cpp
+         Generating Code...
+     1>c:\users\niki\documents\visual studio 2013\projects\stock_portfolio_library\stock_portfolio_library\stockbst.cpp(613): warning C4715: 'StockBST::GetShares' : not all control paths return a value
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Niki\Documents\Visual Studio 2013\Projects\Stock_Portfolio_Library\Debug\Stock_Portfolio_Library.lib" /NOLOGO Debug\Portfolio.obj
+         Debug\Stock.obj
+         Debug\StockBST.obj
+         Debug\StockList.obj
+         Debug\StockQueue.obj
+         Debug\StockStack.obj
+         Stock_Portfolio_Library.vcxproj -> C:\Users\Niki\Documents\Visual Studio 2013\Projects\Stock_Portfolio_Library\Debug\Stock_Portfolio_Library.lib
+     1>Done Building Project "C:\Users\Niki\Documents\Visual Studio 2013\Projects\Stock_Portfolio_Library\Stock_Portfolio_Library\Stock_Portfolio_Library.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.65
